@@ -1,0 +1,184 @@
+/* Paleta de Cores Axxon */
+:root {
+    --primary-purple: #8B00FF;
+    --medium-purple: #A020F0;
+    --light-purple: #C060FF;
+    --dark-bg: #0A0A0A;
+    --card-bg: rgba(20, 16, 24, 0.7); /* Transparência alta */
+    --input-bg: #1E1528;
+    --white: #FFFFFF;
+    --gray-text: #F4F0F8;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fundo de Rede Neural Animado (Sutil e com movimento) */
+.neural-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%; /* Maior para permitir o movimento de drift */
+    height: 200%;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10L90 90M90 10L10 90' stroke='%23C060FF' stroke-width='0.1' stroke-opacity='0.2'/%3E%3Ccircle cx='10' cy='10' r='0.5' fill='%23C060FF' fill-opacity='0.4'%3E%3Canimate attributeName='r' values='0.5;1.5;0.5' dur='3s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E");
+    background-size: 150px 150px;
+    animation: drift 100s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-50%, -50%); }
+}
+
+/* Container de Login */
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px; /* Garante que fique solto das bordas no mobile */
+}
+
+.login-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(192, 96, 255, 0.3);
+    border-radius: 9px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+/* Logo e Textos */
+.logo-img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--gray-text);
+    opacity: 0.8;
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+/* Campos de Formulário */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--light-purple);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background: var(--input-bg);
+    border: 1px solid rgba(192, 96, 255, 0.2);
+    border-radius: 9px; 
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--light-purple);
+    background: rgba(30, 21, 40, 0.9);
+}
+
+/* Checkbox Personalizado */
+.extra-options {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--gray-text);
+}
+
+.checkbox-container input { display: none; }
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    border: 1px solid var(--light-purple);
+    margin-right: 10px;
+    position: relative;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background: var(--primary-purple);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    left: 3px;
+    top: 0;
+}
+
+/* Botão de Login */
+.btn-login {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-purple);
+    border: none;
+    border-radius: 9px; /* Botão com cantos arredondados */
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-login:hover {
+    background: var(--light-purple);
+    box-shadow: 0 0 20px rgba(139, 0, 255, 0.4);
+    transform: scale(1.02);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 40px 25px;
+    }
+    
+    .logo-img {
+        max-width: 150px;
+    }
+}
