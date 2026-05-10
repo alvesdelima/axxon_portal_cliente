@@ -19,20 +19,40 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // VISÃO DO ADMIN (Você vê os cards)
-function renderAdminDashboard(nome, container) {
+async function renderAdminDashboard(nome, container) {
     container.innerHTML = `
         <header class="dash-header">
             <h2>Bem-vinda, ${nome} 👋</h2>
             <p>Selecione um cliente para analisar a performance</p>
         </header>
         <div class="grid-clientes" id="grid-clientes">
-            <div class="card-cliente" onclick="verDash('abc-123')">
-                <h3>Empresa Exemplo</h3>
-                <span>ID: abc-123</span>
-                <button>Ver Performance</button>
-            </div>
+            <p>Carregando clientes...</p>
         </div>
     `;
+
+    const grid = document.getElementById('grid-clientes');
+    
+    try {
+        // Substitua pela URL do novo webhook que você criou no n8n
+        const response = await fetch('CONFIG.N8N_LISTAR_CLIENTES_URL');
+        const clientes = await response.json();
+
+        grid.innerHTML = ''; // Limpa o "Carregando..."
+
+        clientes.forEach(cliente => {
+            const card = document.createElement('div');
+            card.className = 'card-cliente';
+            card.onclick = () => verDash(cliente.cliente_id);
+            card.innerHTML = `
+                <h3>${cliente.nome}</h3>
+                <span>ID: ${cliente.cliente_id}</span>
+                <button>Ver Performance</button>
+            `;
+            grid.appendChild(card);
+        });
+    } catch (err) {
+        grid.innerHTML = '<p>Erro ao carregar clientes.</p>';
+    }
 }
 
 // VISÃO DO CLIENTE (Ele vê o dash dele)

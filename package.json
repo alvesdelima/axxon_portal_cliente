@@ -2,6 +2,6 @@
   "name": "axxon-portal",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p js && echo \"const CONFIG = { N8N_WEBHOOK_URL: '$N8N_WEBHOOK_URL' };\" > js/config.js"
+    "build": "mkdir -p js && echo \"const CONFIG = { N8N_WEBHOOK_URL: '$N8N_WEBHOOK_URL', N8N_LISTAR_CLIENTES_URL: '$N8N_LISTAR_CLIENTES_URL' };\" > js/config.js"
   }
 }
