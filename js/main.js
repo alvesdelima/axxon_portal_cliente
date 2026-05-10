@@ -34,7 +34,7 @@ async function renderAdminDashboard(nome, container) {
     
     try {
         // Substitua pela URL do novo webhook que você criou no n8n
-        const response = await fetch('CONFIG.N8N_LISTAR_CLIENTES_URL');
+        const response = await fetch(CONFIG.N8N_LISTAR_CLIENTES_URL);
         const clientes = await response.json();
 
         grid.innerHTML = ''; // Limpa o "Carregando..."
