@@ -1,0 +1,11 @@
+# Configurações de ambiente (Onde ficará seu Webhook)
+js/config.js
+
+# Logs e arquivos de sistema
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Pastas de ambiente virtual (caso use Python no futuro)
+venv/
+.env
